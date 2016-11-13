@@ -1,0 +1,40 @@
+<!DOCTYPE html> 
+<html ng-app="notesApp"> 
+<head>    
+<title>Some styling</title>    
+<style type="text/css">
+.done{
+	background-color: lightgreen;
+}
+.pending{
+	background-color: pink;
+}
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+</head>
+
+<body ng-controller='MainCtrl as ctrl'>   
+    
+    <div ng-repeat="note in ctrl.notes" ng-class="ctrl.getNotes(note.done)">
+    	<span class="label">{{note.label}}</span>
+    	<span ng-show="note.assignee" ng-bind="note.id"></span>
+    </div>
+
+    <script type="text/javascript">
+      angular.module('notesApp',[])
+       .controller('MainCtrl',function () {
+       	   var self = this;
+       	   self.notes = [
+       	       {id:1, label:'First Note', done:true, assignee:'Jack'},
+       	       {id:2, label:'Third Note', done:true},
+       	       {id:3, label:'Second Note', done:false, assignee:'Jim'},
+       	   ];
+
+       	   self.getNotes = function(status){
+       	   	return { done:status, pending: !status };
+       	   };
+       });
+
+    </script>
+</body>
+</html>

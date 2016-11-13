@@ -1,0 +1,46 @@
+<html ng-app="exampleApp"> 
+<head>    
+<title>JQLite Example</title>    
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+
+<script type="text/javascript">
+
+//children, eq, find(tag), next, parent
+
+angular.module("exampleApp",[])
+ .directive("demoDirective", function () {
+   return function(scope,element,attribute){
+     var items = element.children();
+
+     for(var i= 0; i < items.length; i++){
+           console.log(items.eq(i).text());
+           items.eq(i).css("font-weight","bold");
+     }
+ }})
+.controller("defaultCtrl",function($scope){
+    
+ });
+
+</script>
+
+</head>
+
+<body ng-controller="defaultCtrl">
+<h1>JQLite Code Examples</h1>
+<h3>Fruit</h3>
+  <ol demo-directive>
+    <li>Apple</li>
+    <li>Oranges</li>
+       <ul>
+          <li>Oranges</li>
+       </ul>
+    <li>Green-Apple</li>
+    <li>Andaman-Oranges</li>
+</body>
+</html>

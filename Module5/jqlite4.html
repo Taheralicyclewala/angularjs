@@ -1,0 +1,66 @@
+<html ng-app="exampleApp"> 
+<head>    
+<title>JQLite Example</title>    
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+
+<style type="text/css">
+
+.bold{
+	font-weight: bold;
+}
+
+.change{
+	background-color: lightpink;
+}
+
+</style>
+
+<script type="text/javascript">
+//children, eq, find(tag), next, parent
+
+angular.module("exampleApp",[])
+ .directive("demoDirective", function () {
+   return function(scope,element,attribute){
+     var listElem = angular.element("<ol>");
+     element.append(listElem);
+
+     for(var i =0; i < scope.names.length; i++){
+      listElem.append(angular.element("<li>")
+        .append(angular.element("<span>").text(scope.names[i])));
+     }
+
+     var buttons = element.find("li");
+     buttons.on("mouseover",function(e){
+     	element.find("li").toggleClass("bold");
+     	console.log("Clicked");
+     })
+
+     buttons.on("click",function(e){
+     	element.find("li").toggleClass("change");
+     	console.log("Clicked");
+     })
+
+ }})
+.controller("defaultCtrl",function($scope){
+   $scope.names = ["Apple","Mango","Pine-apple","Orange"];
+ });
+
+</script>
+
+</head>
+
+<body ng-controller="defaultCtrl">
+<h1>JQLite Code Examples</h1>
+<h3>Fruit</h3>
+  <div demo-directive>
+     <p>Click Here</p>
+  </div>
+    
+</body>
+</html>

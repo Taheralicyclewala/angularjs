@@ -1,0 +1,34 @@
+<!DOCTYPE html> 
+<html ng-app="notesApp"> 
+<head>    
+<title>Form Validation</title>    
+
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+</head>
+
+<body ng-controller='MainCtrl as ctrl'>
+
+<form ng-submit="ctrl.onSubmitForm()" name="myform" action="http://www.google.com">
+	
+   <input type="submit" value="Submit">
+   <button ng-click="ctrl.fun()" >Submit Button</button>
+</form>
+
+
+<script type="text/javascript">
+angular.module('notesApp',[])
+.controller('MainCtrl',function(){
+    var self = this;
+
+    self.fun = function(){
+    	console.log("Having fun time");
+    }
+    self.onSubmitForm = function(){
+       console.log("Yess!! Form submitted");
+    }
+    
+});
+
+</script>
+</body>
+</html>

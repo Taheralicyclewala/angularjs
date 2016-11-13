@@ -1,0 +1,38 @@
+<!DOCTYPE html> 
+<html ng-app="notesApp"> 
+<head>    
+<title>This example code</title>    
+
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+
+<body > 
+    <div ng-controller='MainCtrl as ctrl'>
+    <h2>{{ctrl.name}}</h2>
+    </div>
+
+    <div ng-controller='MainCtrl2 as ctrl2'>
+    <h2>{{ctrl2.name}}</h2>
+    <button ng-click="ctrl2.changeMessage()">Change Message</button>
+    </div>
+
+
+    <script type="text/javascript">
+     angular.module('notesApp',[])
+     .controller('MainCtrl',function () {
+
+     	var self = this;
+     	self.name = "Hello World";
+     })
+     .controller('MainCtrl2',function () {
+
+     	var self = this;
+     	self.name = "Hello World Again";
+        self.changeMessage = function(){
+            self.name = "Awesome Wednesday";
+        }
+     })
+     ;
+    </script>
+
+</body>
+</html>

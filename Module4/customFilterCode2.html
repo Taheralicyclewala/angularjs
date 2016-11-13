@@ -1,0 +1,91 @@
+<html ng-app="exampleApp"> 
+<head>    
+<title>Scope Example</title>    
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+
+</head>
+
+<body ng-controller="ourctrl">
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h3>
+				Products
+				<span class="label label-primary">{{products.length}}</span>
+			</h3>
+
+      <div class="panel-body">Limit: <select ng-model="col" ng-options="item for item in limitRange"></select>
+			<div class="panel-body">
+				<table class="table table-stripped table-bordered table-condenced">
+					<thead>
+                       <tr>
+                       	<td>Json</td>
+                       	<td>Name</td>
+                       	<td>Category</td>
+                       	<td>Expiry</td>
+                       	<td class="text-right">Price</td>
+                       </tr> 
+					</thead>
+					<tbody>
+                       <tr ng-repeat="p in products | orderBy:col">
+                       	<td>{{ p | json}}</td>
+                       	<td>{{ p.name | justAppend:'awi' }}</td>
+                       	<td>{{ p.category }}</td>
+                       	<td>{{ getExpiryDate(p.expiry) | date:"dd MMM yyyy" }}</td>
+                       	<td class="text-right">{{ p.price | currency:"&#8377" }}</td>
+					</tbody>
+
+				</table>
+
+<script type="text/javascript">
+angular.module("exampleApp",[])
+.controller("ourctrl",function($scope){
+   $scope.products = [
+     {name:'apple', category:'Fruit',price:1000, expiry:10},
+     {name:'pineApple', category:'Fruit',price:1500, expiry:14},
+     {name:'xusterdApple', category:'Fruit',price:3000, expiry:5},
+     {name:'Tomato', category:'Vegetable',price:2000, expiry:2},
+     {name:'Mango', category:'Fruit',price:10000, expiry:25},
+     {name:'Pumpkin', category:'Vegetable',price:6000, expiry:18}
+   ];
+
+   $scope.getExpiryDate = function(days){
+   	var now = new Date();
+   	return now.setDate(now.getDate() + days);
+   }
+
+   $scope.limitVal = 5;
+   $scope.limitRange = ["name","price","-price","expiry"];
+
+   // for(var i = 0; i < $scope.products.length; i++){
+   //     $scope.limitRange.push(i);
+   // }
+
+   $scope.selectItems = function(item){
+    console.log("Each Element " + item.name);
+    return item.category == 'Fruit' && item.price > 2000;
+   }
+
+   $scope.myCustomSorter = function(item){
+     return item.expiry < 5 ? 0 : item.price;
+   }
+})
+.filter("labelCase", function(){
+    return function(value,reverse){
+      if (angular.isString(value)){
+        var intermediate = reverse ? value.toUpperCase() : value.toLowerCase();
+        return (reverse ? intermediate[0].toLowerCase(): intermediate[0].toUpperCase()) + intermediate.substr(1);
+      } else {
+        return value;
+      }
+    };
+  });
+</script>
+<script src="customFilters.js"></script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<html ng-app="exampleApp"> 
+<head>    
+<title>Scope Example</title>    
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+</head>
+
+<body>
+    
+<div class="well" ng-controller="ourctrl">
+	<h3>Billing Zip Code Information</h3>
+	<div class="form-group">
+        <input class="form-control" ng-model="billinfo">
+	</div>
+    <button class="btn btn-info" ng-click="setAddress('billingzip')">Save Billing</button>
+</div>
+
+<div class="well" ng-controller="ourctrl">
+	<h3>Shipping Zip Code Information</h3>
+	<div class="form-group">
+        <input class="form-control" ng-model="shipbillinfo">
+	</div>
+	<button class="btn btn-info" ng-click="copyAddress()">Copy Billing</button>
+    <button class="btn btn-info" ng-click="setAddress('shipbillingzip')">Save Billing</button>
+</div>
+
+<script type="text/javascript">
+angular.module("exampleApp",[])
+.controller("ourctrl",function($scope){
+     $scope.address = {};
+
+     $scope.setAddress = function(type){
+        console.log("Logging " + type + $scope.billinfo);
+        $scope.address[type] = $scope.billinfo;
+     }
+
+     $scope.copyAddress = function(){
+     	console.log("Ship Logging "+ $scope.billinfo);
+     	$scope.shipbillinfo = $scope.billinfo;
+     }
+
+
+});
+</script>
+
+</body>
+</html>

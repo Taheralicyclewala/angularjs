@@ -1,0 +1,5 @@
+link - specifies the link function for the directive
+restrict - Specifies how the directive can be applied (applied as an element, attribute, class attribute& comment)
+scope - Creates a new scope or isolates scope
+template - specifies the code that will be inserted into HTML
+templateURL -External path to HTML code

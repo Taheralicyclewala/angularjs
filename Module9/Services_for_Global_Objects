@@ -1,0 +1,13 @@
+1. DOM API Global Objects - window, document, timeouts, location, anchorScroll
+2. Exceptions
+
+Methods by $location
+- absUrl() - Returns the complete URL of current doc
+- hash(), hash(target)
+- search(), search(term, params)
+- url(), url(target)
+
+
+The events define by $location Services
+$locationChangeStart   -> Triggered before url is changed
+$locationChangeSuccess -> Triggered after url has changed

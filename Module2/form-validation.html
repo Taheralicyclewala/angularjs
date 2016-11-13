@@ -1,0 +1,33 @@
+<!DOCTYPE html> 
+<html ng-app="notesApp"> 
+<head>    
+<title>Helper variables in ng-repeat</title>    
+
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+</head>
+
+<body ng-controller='MainCtrl as ctrl'>
+
+<form ng-submit="ctrl.onSubmitForm()" name="myform" action="http://www.google.com">
+   <input type="text" ng-model="ctrl.action" required>	
+   <input type="text" ng-model="ctrl.reaction" ng-minlength="4">
+   <input type="submit" value="Submit" ng-disabled="myform.$invalid">
+</form>
+
+<script type="text/javascript">
+angular.module('notesApp',[])
+.controller('MainCtrl',function(){
+    var self = this;
+
+    self.fun = function(){
+    	console.log("Having fun time");
+    }
+    self.onSubmitForm = function(){
+       console.log("Yess!! Form submitted");
+    }
+    
+});
+
+</script>
+</body>
+</html>

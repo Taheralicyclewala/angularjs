@@ -1,0 +1,22 @@
+<!DOCTYPE html> 
+<html ng-app> 
+<head>    
+<title>Nested Forms</title>    
+
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+</head>
+
+<body>
+
+<form name="myform">
+	<input type="text" placeholder="MyForm">
+	<ng-form name="personal">
+	    <input type="text" name="firstname" required/>
+	    <span ng-show="myform.personal.firstname.$invalid">More profile Info</span>
+	</ng-form>
+	{{myform.personal.$invalid}}
+<input type="submit" value="submit" ng-disabled="myform.$invalid">
+</form>
+
+</body>
+</html>

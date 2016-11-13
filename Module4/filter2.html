@@ -1,0 +1,70 @@
+<html ng-app="exampleApp"> 
+<head>    
+<title>Scope Example</title>    
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+</head>
+
+<body ng-controller="ourctrl">
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h3>
+				Products
+				<span class="label label-primary">{{products.length}}</span>
+			</h3>
+
+      <div class="panel-body">Limit: <select ng-model="limitVal" ng-options="item for item in limitRange"></select>
+			<div class="panel-body">
+				<table class="table table-stripped table-bordered table-condenced">
+					<thead>
+                       <tr>
+                       	<td>Json</td>
+                       	<td>Name</td>
+                       	<td>Category</td>
+                       	<td>Expiry</td>
+                       	<td class="text-right">Price</td>
+                       </tr> 
+					</thead>
+					<tbody>
+                       <tr ng-repeat="p in products | limitTo:limitVal">
+                       	<td>{{ p | json}}</td>
+                       	<td>{{ p.name | uppercase }}</td>
+                       	<td>{{ p.category }}</td>
+                       	<td>{{ getExpiryDate(p.expiry) | date:"dd MMM yyyy" }}</td>
+                       	<td class="text-right">{{ p.price | currency:"&#8377" }}</td>
+					</tbody>
+
+				</table>
+
+<script type="text/javascript">
+angular.module("exampleApp",[])
+.controller("ourctrl",function($scope){
+   $scope.products = [
+     {name:'Apple', category:'Fruit',price:1000, expiry:10},
+     {name:'PineApple', category:'Fruit',price:1500, expiry:14},
+     {name:'CusterdApple', category:'Fruit',price:3000, expiry:5},
+     {name:'GreenApple', category:'Fruit',price:2000, expiry:2},
+     {name:'Mango', category:'Fruit',price:10000, expiry:25},
+     {name:'Plum', category:'Fruit',price:6000, expiry:18}
+   ];
+
+   $scope.getExpiryDate = function(days){
+   	var now = new Date();
+   	return now.setDate(now.getDate() + days);
+   }
+
+   $scope.limitVal = 5;
+   $scope.limitRange = [];
+
+   for(var i = 0; i < $scope.products.length; i++){
+       $scope.limitRange.push(i);
+   }
+})
+</script>
+</body>
+</html>

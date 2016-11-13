@@ -1,0 +1,28 @@
+<html ng-app="exampleApp"> 
+<head>    
+<title>Scope Example</title>    
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+<script src="multiple-controllers.js"></script>
+</head>
+
+<body ng-controller="topLevelCtrl">
+    
+<div class="well" ng-controller="firstChildCtrl">
+	<h3>First Child Information</h3>
+	<div class="input-group">
+        <span class="input-group-btn">
+            <button class="btn btn-info" ng-click="reverseText()">Reverse Text</button>
+            <button class="btn btn-info" ng-click="changeCase()">Case Change</button>
+        </span>
+	</div>
+    
+</div>
+
+</body>
+</html>

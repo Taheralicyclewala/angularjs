@@ -1,0 +1,42 @@
+<!DOCTYPE html> 
+<html ng-app="notesApp"> 
+<head>    
+<title>Helper variables in ng-repeat</title>    
+
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+</head>
+
+<body ng-controller='MainCtrl as ctrl'>
+
+<div ng-repeat="note in ctrl.notes">
+	{{$index}}. {{note.label}}
+</div>
+
+<div ng-repeat="note in ctrl.notes">
+	{{$index}}. {{$first}}
+</div>
+
+<div ng-repeat="note in ctrl.notes">
+	{{$index}}. {{$last}}
+</div>
+
+<div ng-repeat="note in ctrl.notes">
+	{{$index}}. {{$middle}}
+</div>
+
+<script type="text/javascript">
+angular.module('notesApp',[])
+.controller('MainCtrl',function(){
+    var self = this;
+    self.notes = [
+    {id:1, label:'First Note', done:true},
+    {id:2, label:'Third Note', done:true},
+    {id:1, label:'First Note', done:true},
+    {id:2, label:'Third Note', done:true},
+    {id:3, label:'Second Note', done:false}
+    ];
+});
+
+</script>
+</body>
+</html>

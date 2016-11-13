@@ -1,0 +1,37 @@
+<!DOCTYPE html> 
+<html ng-app="notesApp"> 
+<head>    
+<title>Helper variables in ng-repeat</title>    
+
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+</head>
+
+<body ng-controller='MainCtrl as ctrl'>
+
+<h2>{{ctrl.user.username}}</h2>
+<h2>{{ctrl.user.password}}</h2>
+
+<form ng-submit="ctrl.onSubmitForm()" name="myform" method="post">
+   <input type="text" ng-model="ctrl.user.username">	
+   <input type="password" ng-model="ctrl.user.password">
+   <input type="text" ng-model="ctrl.user.phone" ng-pattern="re">
+   <input type="submit" value="Submit" ng-disabled="myform.$invalid">
+</form>
+
+<script type="text/javascript">
+angular.module('notesApp',[])
+.controller('MainCtrl',function($scope){
+    var self = this;
+
+    $scope.re = /^(\+91{1,2}[- ])\d{10}$/;
+
+    self.onSubmitForm = function(){
+    	self.user.username = "Hello " + self.user.username;
+    	self.user.password = "Pass " + self.user.password;
+    }
+    
+});
+
+</script>
+</body>
+</html>

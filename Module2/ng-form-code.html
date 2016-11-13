@@ -1,0 +1,38 @@
+<html ng-app="notesApp">
+<head>
+	<title></title>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+</head>
+
+<body ng-controller="MainCtrl as ctrl">
+	<form novalidate name="myform">
+       <input type="text" name="uname" ng-model="ctrl.user.username" ng-minlength="4">
+       
+       <ng-form name="profile">
+           <input type="text" ng-model="ctrl.user.profile.firstname" placeholder="FirstName" required>
+       </ng-form>
+
+       <ng-form name="myprofile">
+           <input type="text" ng-model="ctrl.user.profile.lastname" placeholder="FirstName" required>
+       </ng-form>
+
+       <span ng-show="myform.profile.$invalid">
+       	Fill info
+       </span>
+
+       <span ng-show="myform.myprofile.$invalid">
+       	My Fill info
+       </span>
+
+       <input type="submit" value="submit" ng-disabled="myform.$invalid">
+	</form>
+
+<script type="text/javascript">
+
+ angular.module("notesApp",[])
+ .controller("MainCtrl", function(){
+     
+ });
+</script>
+</body>
+</html>

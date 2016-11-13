@@ -1,0 +1,35 @@
+<!DOCTYPE html> 
+<html ng-app="notesApp"> 
+<head>    
+<title>Helper variables in ng-repeat</title>    
+
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+</head>
+
+<body ng-controller='MainCtrl as ctrl'>
+
+<h2>{{ctrl.user.username}}</h2>
+<h2>{{ctrl.user.password}}</h2>
+
+<form ng-submit="ctrl.onSubmitForm()" name="myform" method="post">
+   <input type="text" ng-model="ctrl.user.username">	
+   <input type="password" ng-model="ctrl.user.password">
+   <input type="submit" value="Submit">
+</form>
+
+<script type="text/javascript">
+angular.module('notesApp',[])
+.controller('MainCtrl',function(){
+    var self = this;
+
+    self.onSubmitForm = function(){
+    	self.user.username = "Hello " + self.user.username;
+    	self.user.password = "Pass " + self.user.password;
+
+    }
+    
+});
+
+</script>
+</body>
+</html>

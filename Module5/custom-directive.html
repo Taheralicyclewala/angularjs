@@ -1,0 +1,70 @@
+<html ng-app="exampleApp"> 
+<head>    
+<title>Custom Directives Example</title>    
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+
+<script type="text/javascript">
+
+angular.module("exampleApp",[])
+ .directive("unorderedList", function () {
+   return function(scope,element,attribute){
+     var data = scope[attribute["uedList"]];
+     
+     console.log(data[0].name);
+
+     var listElem = angular.element("<ul>");
+     element.append(listElem);
+
+     for(var i =0; i < data.length; i++){
+        listElem.append(angular.element('<li>').text(data[i].name));
+     }
+   }
+ })
+  .directive("uedList", function () {
+   return function(scope,element,attribute){
+     var data = scope[attribute["uedList"]];
+     
+     console.log(data[0].name);
+
+     var listElem = angular.element("<ol>");
+     element.append(listElem);
+
+     for(var i =0; i < data.length; i++){
+        listElem.append(angular.element('<li>').text(data[i].name));
+     }
+   }
+ })
+ .controller("defaultCtrl",function($scope){
+
+  $scope.products = [
+     {name:'Apple', category:'Fruit',price:1000, expiry:10},
+     {name:'PineApple', category:'Fruit',price:1500, expiry:14},
+     {name:'CusterdApple', category:'Fruit',price:3000, expiry:5},
+  ];
+
+  $scope.items = [
+     {name:'Tomato', category:'Vegetable',price:2000, expiry:2},
+     {name:'Mango', category:'Fruit',price:10000, expiry:25},
+     {name:'Pumpkin', category:'Vegetable',price:6000, expiry:18}
+  ];
+    
+ });
+
+</script>
+
+</head>
+
+<body ng-controller="defaultCtrl">
+
+  <div class="panel-body">
+      <div unordered-list="productsmore" ued-list="items"></div>
+  </div>
+	
+</body>
+</html>

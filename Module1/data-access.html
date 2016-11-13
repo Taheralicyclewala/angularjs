@@ -1,0 +1,43 @@
+<!DOCTYPE html> 
+<html ng-app="notesApp"> 
+<head>    
+<title>Data-Binding</title>    
+
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+
+
+
+
+<body ng-controller='MainCtrl as ctrl'>   
+    <div ng-repeat="(author,note) in ctrl.notes">
+    	<span class="label">{{note.label}}</span>
+    	<span ng-bind="author"></span>
+    </div>
+    <script type="text/javascript">
+  angular.module('notesApp',[])
+     .controller('MainCtrl',function () {
+
+     	var self = this;
+     	self.notes = {
+     		shayam:{
+     			id: 1,
+     			label: 'First Note',
+     			done: false
+     		},
+     		shankar:{
+     			id: 2,
+     			label: 'Second Note',
+     			done: true
+     		},
+     		hyam:{
+     			id: 3,
+     			label: 'Third Note',
+     			done: false
+     		},
+
+     	};
+     	
+     });
+</script>
+</body>
+</html>
